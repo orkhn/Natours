@@ -1,0 +1,163 @@
+// Variables
+$color-primary-light: #7ed56f;
+$color-primary-medium: #55c57a;
+$color-primary-dark: #28b485;
+$color-white: #fff;
+$color-dark-gray: #777;
+
+// Global Resets
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+// Custom adjusts for BODY element
+body {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    padding: 3rem;
+    font-size: 1.6rem;
+}
+
+.header {
+    min-height: 95vh;
+    background-image: linear-gradient(to right,
+                                      rgba($color-primary-dark, .8),  
+                                      rgba($color-primary-light, .8)),
+                                      url(/img/hero.jpg);
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0%, 100% 85%, 0% 100%);
+    
+    &__logo-box {
+        position: absolute;
+        top: 3rem;
+        left: 3rem;
+    }
+    &__logo {
+        height: 4rem;
+    }
+
+    &__text-box {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: $color-white;
+
+        .heading-primary {
+            margin-bottom: 6rem;
+            text-transform: uppercase;
+            &--main {
+                font-size: 6rem;
+                letter-spacing: 3.5rem;
+                font-weight: 400;    
+                display: block;
+                margin-bottom: 1.2rem;
+                animation: moveInLeft .4s ease-in-out;
+                backface-visibility: hidden;
+            }
+            &--sub {
+                font-size: 2rem;
+                letter-spacing: 1.75rem;
+                font-weight: 700;    
+                display: block;
+                animation: moveInRight .4s ease-in-out;
+            }
+        }
+
+        .btn {
+            &:link,
+            &:visited{
+                text-decoration: none;
+                text-transform: uppercase;
+                padding: 1.5rem 4rem;
+                border-radius: 30rem;
+                display: inline-block;
+                font-size: 1.6rem;
+                text-transform: uppercase;
+                position: relative;
+            }
+            &:hover {
+                transform: translateY(-.2rem);
+                box-shadow: 0 1rem 2rem rgba(0, 0, 0, .2);
+            }
+            &:active {
+                transform: translateY(-.1rem);
+                box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2)
+            }
+            &::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 30rem;
+                display: inline-block;
+                z-index: -1;
+                transition: all 2s;
+            }
+            &:hover::after {
+                transform: scaleX(1.2) scaleY(1.4);
+                opacity: 0;
+            }
+        }
+        .btn--white {
+            color: $color-dark-gray;
+            background-color: $color-white;
+        }
+        .btn--animated {
+            animation: moveInBottom .5s ease-in-out;
+            animation-fill-mode: backwards;
+        }
+    }
+
+}
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-10rem);
+    }
+    80% {
+        transform: translateX(.2rem);
+    }
+    100%{
+        opacity: 1;
+        transform: translate(0rem);
+    }
+}
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(10rem);
+    }
+    80% {
+        transform: translateX(-.2rem);
+    }
+    100%{
+        opacity: 1;
+        transform: translate(0rem);
+    }
+}
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(3rem);
+    }
+    100%{
+        opacity: 1;
+        transform: translate(0rem);
+    }
+}
